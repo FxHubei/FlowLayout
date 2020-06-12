@@ -66,4 +66,18 @@
      
     removeItem(int position, int count)
 ```
+### item 数据刷新
+```
+notifyDataSetChanged()
 
+notifyItemRangeInserted(int positionStart, int itemCount)
+
+notifyItemRangeRemoved(int positionStart, int itemCount) {
+   
+```
+### 自定义属性 
+
+| 属性  |  类型| 描述 |
+| :-----| ----: | :----: |
+| itemClick     | boole | false 全部不实现点击 反之 |
+| itemLongClick | boole | false 全部不实现点击 反之 |
