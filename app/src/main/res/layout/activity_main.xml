@@ -6,11 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.gakm.demoexample.FTabLayoutExample
+    <com.gakm.demoexample.XFlowLayout
         android:id="@+id/root_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:paddingTop="100px"
         android:paddingBottom="100px" />
+    <TextView
+        android:id="@+id/tv_onclick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+ <!--   <com.gakm.demoexample.CustomView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />-->
 </LinearLayout>
