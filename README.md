@@ -3,11 +3,15 @@
 ### 在布局中引入即可 可以动态加载子View 或者在xml 中固定写死几个
 ###### 布局中写死
 ```
-<com.gakm.demoexample.XFlowLayout
+   <com.gakm.demoexample.XFlowLayout
         android:id="@+id/root_container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -19,13 +23,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-            ..........
+
     </com.gakm.demoexample.XFlowLayout>
         
 ```
 #### 动态加载 
 ```
-adapter = new FlowAdapter<String>(title) {
+       adapter = new FlowAdapter<String>(title) {
             @NonNull
             @Override
             protected View getItemView(int position) {       
@@ -36,16 +40,27 @@ adapter = new FlowAdapter<String>(title) {
 ```
 #### item 的点击事件和长按事件
 ```
- adapter.addItemClickListener(new FlowAdapter.OnViewClickListener() {
+       adapter.addItemClickListener(new FlowAdapter.OnViewClickListener() {
             @Override
             public void onViewClick(View v, int position) {
                 Toast.makeText(MainActivity.this, "addItemLongClickListener===" + position, Toast.LENGTH_SHORT).show();
             }
         });
-        stringFlowAdapter.addItemLongClickListener(new FlowAdapter.OnViewLongClickListener() {
+        adapter.addItemLongClickListener(new FlowAdapter.OnViewLongClickListener() {
             @Override
             public void onViewLongClick(View v, int position) {
                 Toast.makeText(MainActivity.this, "addItemLongClickListener===" + position, Toast.LENGTH_SHORT).show();
             }
         });
         ```
+#### item 添加或者移除
+```
+     addData(@NonNull List<K> list) 
+        
+     addData(@NonNull K data)
+     
+     removeItem(int position)
+     
+    removeItem(int position, int count)
+```
+
