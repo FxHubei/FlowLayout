@@ -1,4 +1,4 @@
-package com.gakm.demoexample;
+package com.gakm.flowlayoutlib;
 
 import android.util.Log;
 

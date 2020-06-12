@@ -1,6 +1,7 @@
-package com.gakm.demoexample;
+package com.gakm.flowlayoutlib;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
@@ -20,23 +21,38 @@ public class XFlowLayout extends ViewGroup {
 
     private List<RectF> mRectFs;
     private FlowAdapter mAdapter;
+
     private boolean itemLongClick = true;
     private boolean itemClick = true;
 
     public XFlowLayout(Context context) {
         super(context);
+        initAttr(context, null);
     }
 
     public XFlowLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initAttr(context, attrs);
     }
 
     public XFlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttr(context, attrs);
     }
 
     public XFlowLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        initAttr(context, attrs);
+    }
+
+    private void initAttr(Context context, AttributeSet attrs) {
+        if (attrs == null) {
+            return;
+        }
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.XFlowLayout);
+        itemClick = typedArray.getBoolean(R.styleable.XFlowLayout_itemClick, itemClick);
+        itemLongClick = typedArray.getBoolean(R.styleable.XFlowLayout_itemLongClick, itemLongClick);
+        typedArray.recycle();
     }
 
     @Override
@@ -195,7 +211,7 @@ public class XFlowLayout extends ViewGroup {
         return new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     }
 
-    public void setAdapter(@NonNull FlowAdapter  adapter) {
+    public void setAdapter(@NonNull FlowAdapter adapter) {
         if (mAdapter != null) {
             mAdapter.unregisterAdapterDataObserver(mObserver);
         }
@@ -239,16 +255,24 @@ public class XFlowLayout extends ViewGroup {
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
             obtainList(mAdapter.getCount());
-            View itemView = mAdapter.getItemView(positionStart);
-            setOnItemClick(itemView, positionStart);
-            addView(itemView, positionStart);
+            int handleCount = positionStart + itemCount;
+            for (int i = positionStart; i < handleCount; i++) {
+                View itemView = mAdapter.getItemView(i);
+                setOnItemClick(itemView, i);
+                addView(itemView, i);
+            }
+
         }
 
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
             obtainList(mAdapter.getCount());
             if (getChildCount() - 1 >= positionStart) {
-                removeViewAt(positionStart);
+                int handleCount = positionStart + itemCount;
+                for (int i = positionStart; i < handleCount; i++) {
+                    removeViewAt(i);
+                }
+
             }
         }
     }

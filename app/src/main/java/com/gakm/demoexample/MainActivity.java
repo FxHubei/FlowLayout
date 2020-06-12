@@ -11,6 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.gakm.flowlayoutlib.FlowAdapter;
+import com.gakm.flowlayoutlib.L;
+import com.gakm.flowlayoutlib.XFlowLayout;
+
 /**
  * @author DemoExample
  * @company 广安科贸
@@ -81,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         flowLayout.setAdapter(stringFlowAdapter);
+
         stringFlowAdapter.addItemClickListener(new FlowAdapter.OnViewClickListener() {
             @Override
             public void onViewClick(View v, int position) {

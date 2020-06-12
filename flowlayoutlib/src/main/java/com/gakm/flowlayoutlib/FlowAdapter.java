@@ -1,4 +1,4 @@
-package com.gakm.demoexample;
+package com.gakm.flowlayoutlib;
 
 import android.database.Observable;
 import android.view.View;
@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -75,14 +74,17 @@ abstract public class FlowAdapter<K> {
     }
 
     public void removeItem(int position) {
-        datas.remove(position);
-        notifyItemRangeRemoved(position, 1);
+        removeItem(0, 1);
     }
 
     public void removeItem(int position, int count) {
-        Iterator<K> iterator = datas.iterator();
-
-        datas.remove(position);
+        if (count > datas.size()) {
+            return;
+        }
+        int handleCount = position + count;
+        for (int i = position; i < handleCount; i++) {
+            datas.remove(position);
+        }
         notifyItemRangeRemoved(position, count);
     }
 
@@ -115,7 +117,7 @@ abstract public class FlowAdapter<K> {
         }
     }
 
-    public void setOnItemLongClick(View v, int position) {
+    void setOnItemLongClick(View v, int position) {
         if (getOnViewLongClickListener() != null) {
             getOnViewLongClickListener().onViewLongClick(v, position);
         }
@@ -137,25 +139,12 @@ abstract public class FlowAdapter<K> {
         mObservable.notifyChanged();
     }
 
-    public final void notifyItemRangeChanged(int positionStart, int itemCount) {
-        notifyItemRangeChanged(positionStart, itemCount, null);
-    }
-
-    public final void notifyItemRangeChanged(int positionStart, int itemCount,
-                                             @Nullable Object payload) {
-        mObservable.notifyItemRangeChanged(positionStart, itemCount, payload);
-    }
-
     public final void notifyItemRangeInserted(int positionStart, int itemCount) {
         mObservable.notifyItemRangeInserted(positionStart, itemCount);
     }
 
     public final void notifyItemRangeRemoved(int positionStart, int itemCount) {
         mObservable.notifyItemRangeInserted(positionStart, itemCount);
-    }
-
-    public final void notifyItemChanged(int position) {
-        notifyItemRangeChanged(position, 1);
     }
 
     void registerAdapterDataObserver(@NonNull XFlowLayout.XAdapterDataObserver observer) {

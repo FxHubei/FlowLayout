@@ -3,7 +3,7 @@
 ### 既可以在布局中添加子view 也可以动态加载
 ###### 布局中写死
 ```
-   <com.gakm.demoexample.XFlowLayout
+   <com.gakm.flowlayoutlib.XFlowLayout
         android:id="@+id/root_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-    </com.gakm.demoexample.XFlowLayout>
+    </com.gakm.flowlayoutlib.XFlowLayout>
         
 ```
 #### 动态加载 
