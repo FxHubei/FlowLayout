@@ -1,6 +1,6 @@
 # FlowLayout
 更加简易的流式布局 FlowLayout
-### 在布局中引入即可 可以动态加载子View 或者在xml 中固定写死几个
+### 既可以在布局中添加子view 也可以动态加载
 ###### 布局中写死
 ```
    <com.gakm.demoexample.XFlowLayout
@@ -52,7 +52,8 @@
                 Toast.makeText(MainActivity.this, "addItemLongClickListener===" + position, Toast.LENGTH_SHORT).show();
             }
         });
-        ```
+        
+```
 #### item 添加或者移除
 ```
      addData(@NonNull List<K> list) 
