@@ -1,5 +1,7 @@
 # FlowLayout
-更加简易的流式布局 FlowLayout
+![image](https://github.com/fuxianglxf/FlowLayout/blob/master/Screenshot_1591961571.png)
+
+##  更加简易的流式布局 FlowLayout
 ### 既可以在布局中添加子view 也可以动态加载
 ###### 布局中写死
 ```
@@ -64,4 +66,18 @@
      
     removeItem(int position, int count)
 ```
+### item 数据刷新
+```
+notifyDataSetChanged()
 
+notifyItemRangeInserted(int positionStart, int itemCount)
+
+notifyItemRangeRemoved(int positionStart, int itemCount) {
+   
+```
+### 自定义属性 
+
+| 属性  |  类型| 描述 |
+| :-----| ----: | :----: |
+| itemClick     | boole | false 全部不实现点击 反之 |
+| itemLongClick | boole | false 全部不实现点击 反之 |
